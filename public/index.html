@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic iFrames</title>
+    <style>
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        iframe {
+            width: 200px;
+            height: 100px;
+            pointer-events: none;
+            overflow: hidden;
+            overflow-y: none;
+            overflow-x: none;
+            border: 1px solid #ccc;
+        }
+
+        #uploadInput {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <section id="iframeContainer"></section>
+<a href="" src="_blank"></a>
+    <!-- Скрытый input для администратора -->
+    <input type="file" id="uploadInput" accept=".html" />
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const iframeContainer = document.getElementById('iframeContainer');
+            
+            // Запрос списка файлов
+            fetch('/files')
+                .then(response => response.json())
+                .then(files => {
+                    files.forEach(file => {
+                        const a = document.createElement('a');
+                        const iframe = document.createElement('iframe');
+                        a.href = `folder-W/${file}`;
+                        a.target= "_blank";
+                        iframe.src = `folder-W/${file}`;
+                        
+                        a.appendChild(iframe);
+                        iframeContainer.appendChild(a);
+
+                        iframe.addEventListener('click', () => {
+                            window.open(iframe.src, '_blank');
+                        });
+                    });
+                })
+                .catch(err => {
+                    console.error('Ошибка получения списка файлов:', err);
+                });
+
+            // Обработка комбинации клавиш для открытия admin.html
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.altKey && e.getModifierState('CapsLock')) {
+                    window.open('admin.html', '_blank');
+                }
+            });
+
+            // Добавление файла index.html в folder-W
+            const uploadInput = document.getElementById('uploadInput');
+            uploadInput.addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const formData = new FormData();
+                    formData.append('file', file);
+
+                    try {
+                        const response = await fetch('/upload', {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        if (response.ok) {
+                            alert('Файл успешно загружен');
+                            location.reload(); // Перезагрузить страницу для отображения нового файла
+                        } else {
+                            alert('Ошибка при загрузке файла');
+                        }
+                    } catch (error) {
+                        console.error('Ошибка загрузки файла:', error);
+                        alert('Ошибка при загрузке файла');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

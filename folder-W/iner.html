@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        iframe{
+            width: 100%;
+            height: 100vh;
+            border: 0px solid transparent;
+        }
+    </style>
+</head>
+<body>
+    <iframe src="./sac/index.html" frameborder="0"></iframe>
+</body>
+</html>
+
+
+
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Голосовой помощник с выбором голоса и настройками</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        button, select, input {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        select, input {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <select id="voiceSelect">
+        <option value="">Выберите голос</option>
+    </select>
+    <label for="pitch">Высота тона: </label>
+    <input type="range" id="pitch" min="0" max="2" value="1" step="0.1">
+    <label for="rate">Скорость: </label>
+    <input type="range" id="rate" min="0.5" max="2" value="1" step="0.1">
+    <button onclick="speak()">Нажми меня</button>
+
+    <script>
+        const voiceSelect = document.getElementById('voiceSelect');
+        const pitch = document.getElementById('pitch');
+        const rate = document.getElementById('rate');
+        let voices = [];
+
+        function populateVoiceList() {
+            voices = speechSynthesis.getVoices();
+            voiceSelect.innerHTML = '';
+            voiceSelect.appendChild(new Option('Выберите голос', ''));
+
+            voices.forEach((voice) => {
+                const option = document.createElement('option');
+                option.value = voice.name;
+                option.textContent = `${voice.name} (${voice.lang})`;
+                voiceSelect.appendChild(option);
+            });
+        }
+
+        function speak() {
+            const selectedVoice = voiceSelect.value;
+            const utterance = new SpeechSynthesisUtterance("Привет, как ваши дела?");
+            utterance.lang = 'ru-RU'; // Устанавливаем язык для синтеза
+            utterance.pitch = pitch.value;
+            utterance.rate = rate.value;
+
+            // Найти выбранный голос
+            if (selectedVoice) {
+                const voice = voices.find(v => v.name === selectedVoice);
+                if (voice) {
+                    utterance.voice = voice;
+                }
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Обновить список голосов при загрузке
+        speechSynthesis.onvoiceschanged = populateVoiceList;
+        populateVoiceList();
+    </script>
+</body>
+</html> -->

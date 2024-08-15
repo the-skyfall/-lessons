@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Оформление заказа</h1>
+    </header>
+
+    <main>
+        <div class="container">
+            <div id="cart-items"></div>
+            <div id="total-price"></div>
+
+            <form id="checkout-form">
+                <label for="city">Город:</label>
+                <select id="city" class="form-control" required>
+                    <option value="">Выберите город</option>
+                    <option value="Ташкент">Ташкент</option>
+                    <option value="Самарканд">Самарканд</option>
+                    <option value="Бухара">Бухара</option>
+                </select>
+                <label for="phone">Номер телефона:</label>
+                <input type="text" id="phone" class="form-control" required>
+                <button id="order-button" type="submit" class="btn" disabled>Отправить заказ</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

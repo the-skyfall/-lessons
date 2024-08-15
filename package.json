@@ -1,0 +1,14 @@
+{
+    "name": "dynamic-iframes-project",
+    "version": "1.0.0",
+    "description": "Проект для динамического отображения iframe с загрузкой файлов",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "author": "Ваше имя",
+    "license": "ISC",
+    "dependencies": {
+        "formidable": "^3.5.1"
+    }
+}
