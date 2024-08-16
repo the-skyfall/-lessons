@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок по CSS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            margin-bottom: 20px;
+        }
+        :root {
+	--gap: .5em;
+	--index: calc(1vw + 1vh);
+	--color-dark: #7c7c7c;
+}
+        .code-block pre {
+            margin: 0;
+        }
+
+        /* Примеры стилей */
+        .basic-styles h1 {
+            color: #333;
+        }
+
+        .basic-styles p {
+            color: #666;
+        }
+
+        .basic-styles a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .basic-styles a:hover {
+            text-decoration: underline;
+        }
+
+        .animation-example button {
+            position: relative;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .animation-example button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.3);
+            transition: width 0.4s ease;
+        }
+
+        .animation-example button:hover::after {
+            width: 100%;
+        }
+
+        .hover-example:hover {
+            background-color: #f0f0f0;
+        }
+
+        .transition-example {
+            transition: background-color 0.3s ease;
+        }
+
+        .transition-example:hover {
+            background-color: #e0e0e0;
+        }
+
+        .pseudo-elements::before {
+            content: "Привет! ";
+            color: #007bff;
+        }
+
+        .pseudo-elements::after {
+            content: " - Спасибо за внимание!";
+            color: #28a745;
+        }
+
+        .media-query-example {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .media-query-example {
+                background-color: #28a745;
+            }
+        }
+
+        /* Анимации с ключевыми кадрами */
+        .keyframes-example {
+            width: 100px;
+            height: 100px;
+            background-color: #007bff;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .keyframes-example2 {
+            width: 100px;
+            height: 100px;
+            background-color: #007bff;
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .gradient-background {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6f61, #6b5b95);
+            border-radius: 10px;
+        }
+
+        .clip-text {
+            background: linear-gradient(45deg, #ff6f61, #6b5b95);
+            /* -webkit-background-clip: text; */
+            -webkit-text-fill-color: transparent;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .fixed-position {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .conteyner-asd-x-G{
+    width: 100%;
+    height: 100vh;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: none;
+}
+.conteyner-asd-x-G h3{
+    width: 100%;
+    height: initial;
+    background-color: rgba(252, 251, 251, 0.171);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    padding: calc(var(--index) * 0.5);
+    top: calc(var(--index) * 2);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: calc(var(--index) * 4);
+    color:black;
+}
+.conteyner-asd-x-G h4{
+    width: 100%;
+    height: initial;
+    background-color: rgba(252, 251, 251, 0.171);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    padding-left: calc(var(--index) * 0.5);
+    bottom: calc(var(--index) * 0.5);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: calc(var(--index) * 3);
+    color:black;
+}
+
+        @media screen and (max-width: 600px){
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+            body {
+            font-family: none;
+            line-height: 0;
+            margin: 0;
+            background-color: none;
+        }
+            .PASDwr{
+                display: none;
+            }
+            .conteyner-asd-x-G{
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="conteyner-asd-x-G">
+        <h3>Основы CSS: 1</h3>
+        <h4>Мы начнем изучение CSS, чтобы узнать, как стилизовать ваши HTML-элементы и улучшить внешний вид веб-страниц.</h4>
+   </div>
+
+
+
+    <div class="container mt-4 PASDwr">
+        <h1 class="mb-4">Урок по CSS</h1>
+    
+        <div class="section mb-4">
+            <h2>Основные стили</h2>
+            <p>Этот раздел покажет основные стили для HTML-элементов.</p>
+    
+            <div class="code-block">
+                <pre><code>&lt;div class="basic-styles"&gt;
+        &lt;h1&gt;Заголовок&lt;/h1&gt;
+        &lt;p&gt;Это абзац текста.&lt;/p&gt;
+        &lt;a href="#"&gt;Ссылка&lt;/a&gt;
+    &lt;/div&gt;</code></pre>
+                <pre><code>&lt;style&gt;
+                    /* Стили для заголовков внутри блока с классом basic-styles */
+                    .basic-styles h1 {
+                        color: #333; /* Цвет заголовка */
+                    }
+    
+                    /* Стили для абзацев внутри блока с классом basic-styles */
+                    .basic-styles p {
+                        color: #666; /* Цвет текста абзаца */
+                    }
+    
+                    /* Стили для ссылок внутри блока с классом basic-styles */
+                    .basic-styles a {
+                        color: #007bff; /* Цвет ссылки */
+                        text-decoration: none; /* Убираем подчеркивание у ссылки */
+                    }
+    
+                    /* Стили для ссылок при наведении */
+                    .basic-styles a:hover {
+                        text-decoration: underline; /* Подчеркивание при наведении */
+                    }
+                    &lt;/style&gt;</code></pre>
+            </div>
+    
+            <div class="basic-styles mb-4">
+                <h1>Заголовок</h1>
+                <p>Это абзац текста.</p>
+                <a href="#">Ссылка</a>
+            </div>
+        </div>
+    
+        <div class="section mb-4">
+            <h2>Анимация кнопки</h2>
+            <p>Пример использования CSS-анимации с псевдоэлементами:</p>
+    
+            <div class="code-block">
+                <pre><code>&lt;div class="animation-example"&gt;
+        &lt;button&gt;Анимация&lt;/button&gt;
+    &lt;/div&gt;</code></pre>
+                <pre><code>&lt;style&gt;
+                    /* Стили для кнопки внутри блока с классом animation-example */
+                    .animation-example button {
+                        position: relative; /* Позиционирование относительно родителя */
+                        background-color: #007bff; /* Цвет фона кнопки */
+                        color: #fff; /* Цвет текста кнопки */
+                        border: none; /* Убираем стандартные границы кнопки */
+                        padding: 10px 20px; /* Внутренние отступы кнопки */
+                        border-radius: 5px; /* Скругление углов кнопки */
+                        overflow: hidden; /* Скрытие содержимого, выходящего за границы кнопки */
+                    }
+    
+                    /* Псевдоэлемент ::after для кнопки */
+                    .animation-example button::after {
+                        content: ''; /* Пустое содержимое для псевдоэлемента */
+                        position: absolute; /* Абсолютное позиционирование */
+                        top: 0; /* Привязка к верхнему краю */
+                        left: 0; /* Привязка к левому краю */
+                        width: 0; /* Начальная ширина псевдоэлемента */
+                        height: 100%; /* Высота псевдоэлемента равна высоте кнопки */
+                        background-color: rgba(255, 255, 255, 0.3); /* Полупрозрачный цвет фона */
+                        transition: width 0.4s ease; /* Переход ширины с анимацией */
+                    }
+    
+                    /* Изменение ширины псевдоэлемента при наведении */
+                    .animation-example button:hover::after {
+                        width: 100%; /* Заполнение всей ширины кнопки при наведении */
+                    }
+                    &lt;/style&gt;</code></pre>
+            </div>
+    
+            <div class="animation-example mb-4">
+                <button>Анимация</button>
+            </div>
+        </div>
+    
+        <div class="section mb-4">
+            <h2>Ховер и переходы</h2>
+            <p>Примеры использования эффектов ховера и переходов:</p>
+    
+            <div class="code-block">
+                <pre><code>&lt;div class="hover-example"&gt;
+        Наведите на меня
+    &lt;/div&gt;
+    
+    &lt;style&gt;
+        /* Стили для блока при наведении */
+        .hover-example:hover {
+            background-color: #f0f0f0; /* Изменение фона при наведении */
+        }
+        &lt;/style&gt;</code></pre>
+            </div>
+    
+            <div class="hover-example mb-4">
+                Наведите на меня
+            </div>
+        </div>
+    
+        <div class="section mb-4">
+            <h2>Псевдоэлементы</h2>
+            <p>Примеры использования псевдоэлементов ::before и ::after:</p>
+    
+            <div class="code-block">
+                <pre><code>&lt;div class="pseudo-elements"&gt;
+        Текст с псевдоэлементами
+    &lt;/div&gt;
+    
+    &lt;style&gt;
+        /* Псевдоэлемент ::before добавляет текст перед содержимым блока */
+        .pseudo-elements::before {
+            content: "Привет! "; /* Текст перед содержимым */
+            color: #007bff; /* Цвет текста псевдоэлемента */
+        }
+    
+        /* Псевдоэлемент ::after добавляет текст после содержимого блока */
+        .pseudo-elements::after {
+            content: " - Спасибо за внимание!"; /* Текст после содержимого */
+            color: #28a745; /* Цвет текста псевдоэлемента */
+        }
+        &lt;/style&gt;</code></pre>
+            </div>
+    
+            <div class="pseudo-elements mb-4">
+                Текст с псевдоэлементами
+            </div>
+        </div>
+    
+        <div class="section mb-4">
+            <h2>Медиа-запросы</h2>
+            <p>Пример использования медиа-запросов для изменения стиля на разных экранах:</p>
+    
+            <div class="code-block">
+                <pre><code>&lt;div class="media-query-example"&gt;
+        Этот блок меняет цвет фона на мобильных устройствах.
+    &lt;/div&gt;
+    
+    &lt;style&gt;
+        /* Основные стили для блока */
+        .media-query-example {
+            background-color: #007bff; /* Цвет фона */
+            color: #fff; /* Цвет текста */
+            padding: 10px; /* Внутренние отступы */
+        }
+    
+        /* Медиа-запрос для экранов шириной до 600px */
+        @media (max-width: 600px) {
+            .media-query-example {
+                background-color: #28a745; /* Изменение цвета фона для мобильных устройств */
+            }
+        }
+        &lt;/style&gt;</code></pre>
+            </div>
+    
+            <div class="media-query-example mb-4">
+                Этот блок меняет цвет фона на мобильных устройствах.
+            </div>
+        </div>
+    
+        <div class="section mb-4">
+            <h2>Анимации с ключевыми кадрами</h2>
+            <p>Примеры анимаций с использованием ключевых кадров:</p>
+    
+            <div class="code-block">
+                <pre><code>&lt;div class="keyframes-example"&gt;&lt;/div&gt;
+    
+    &lt;style&gt;
+        /* Анимация вращения элемента */
+        .keyframes-example {
+            width: 100px; /* Ширина элемента */
+            height: 100px; /* Высота элемента */
+            background-color: #007bff; /* Цвет фона элемента */
+            animation: spin 2s linear infinite; /* Применение анимации вращения */
+        }
+    
+        /* Определение ключевых кадров для вращения */
+        @keyframes spin {
+            0% { transform: rotate(0deg); } /* Начальное положение */
+            100% { transform: rotate(360deg); } /* Конечное положение */
+        }
+        &lt;/style&gt;</code></pre>
+                <pre><code>&lt;div class="keyframes-example2"&gt;&lt;/div&gt;
+    
+    &lt;style&gt;
+        /* Анимация подпрыгивания элемента */
+        .keyframes-example2 {
+            width: 100px; /* Ширина элемента */
+            height: 100px; /* Высота элемента */
+            background-color: #007bff; /* Цвет фона элемента */
+            animation: bounce 1.5s ease-in-out infinite; /* Применение анимации подпрыгивания */
+        }
+    
+        /* Определение ключевых кадров для подпрыгивания */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0); /* Начальное и конечное положение */
+            }
+            40% {
+                transform: translateY(-30px); /* Положение на пике прыжка */
+            }
+            60% {
+                transform: translateY(-15px); /* Положение после пика прыжка */
+            }
+        }
+        &lt;/style&gt;</code></pre>
+            </div>
+    
+            <div class="keyframes-example mb-4"></div>
+            <div class="keyframes-example2 mb-4"></div>
+        </div>
+    </div>
+    
+
+
+
+    <div class="container mt-4 PASDwr">
+        <h2>Градиенты и обрезка текста</h2>
+        <p>Использование градиентов и обрезка текста с помощью фона:</p>
+    
+        <div class="code-block">
+            <pre><code>&lt;div class="gradient-background"&gt;&lt;/div&gt;
+    
+    &lt;div class="clip-text"&gt;
+        Градиентный текст
+    &lt;/div&gt;
+    
+    &lt;style&gt;
+        /* Блок с градиентным фоном */
+        .gradient-background {
+            width: 200px; /* Ширина блока */
+            height: 200px; /* Высота блока */
+            background: linear-gradient(45deg, #ff6f61, #6b5b95); /* Градиентный фон */
+            border-radius: 10px; /* Скругление углов */
+        }
+    
+        /* Блок с обрезкой текста */
+        .clip-text {
+            background: linear-gradient(45deg, #ff6f61, #6b5b95); /* Градиентный фон текста */
+            -webkit-background-clip: text; /* Обрезка фона по форме текста */
+            -webkit-text-fill-color: transparent; /* Сделать текст прозрачным, чтобы показать градиент */
+            font-size: 40px; /* Размер шрифта */
+            font-weight: bold; /* Жирность шрифта */
+        }
+        &lt;/style&gt;</code></pre>
+        </div>
+    
+        <div class="gradient-background mb-4"></div>
+        <div class="clip-text mb-4">Градиентный текст</div>
+    </div>
+    
+    <div class="container mt-4 PASDwr">
+        <h2>Фиксированное позиционирование</h2>
+        <p>Пример фиксированного позиционирования элемента:</p>
+    
+        <div class="code-block">
+            <pre><code>&lt;div class="fixed-position"&gt;
+        Фиксированный элемент
+    &lt;/div&gt;
+    
+    &lt;style&gt;
+        /* Стили для фиксированного позиционирования */
+        .fixed-position {
+            position: fixed; /* Фиксированное позиционирование */
+            bottom: 10px; /* Расположение от нижнего края */
+            right: 10px; /* Расположение от правого края */
+            background-color: #007bff; /* Цвет фона элемента */
+            color: #fff; /* Цвет текста */
+            padding: 10px 20px; /* Внутренние отступы */
+            border-radius: 5px; /* Скругление углов */
+        }
+        &lt;/style&gt;</code></pre>
+        </div>
+    
+        <div class="fixed-position mb-4">
+            Фиксированный элемент
+        </div>
+    </div>
+    
+</body>
+</html>
+
+

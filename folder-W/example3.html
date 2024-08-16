@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 2: Продвинутые техники CSS</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Общие стили для блоков с кодом */
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+            margin-bottom: 20px;
+        }
+        :root {
+	--gap: .5em;
+	--index: calc(1vw + 1vh);
+	--color-dark: #7c7c7c;
+}
+        /* Пример Flexbox */
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .flex-item {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            margin: 5px;
+            text-align: center;
+        }
+
+        .flex-item:nth-child(2) {
+            flex: 2;
+        }
+
+        /* Пример Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 20px;
+            background-color: #e0e0e0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .grid-item {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .grid-item:nth-child(2) {
+            grid-column: span 2;
+        }
+
+        /* Пример трансформаций и переходов */
+        .transform-example {
+            width: 100px;
+            height: 100px;
+            background-color: #007bff;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .transform-example:hover {
+            transform: scale(1.2) rotate(15deg);
+            background-color: #28a745;
+        }
+
+        /* Пример фильтров */
+        .filter-example {
+            width: 300px;
+            height: 200px;
+            background-image: url('https://via.placeholder.com/300x200');
+            background-size: cover;
+            filter: grayscale(100%) blur(5px);
+            transition: filter 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .filter-example:hover {
+            filter: grayscale(0%) blur(0);
+        }
+
+        /* Пример псевдоклассов и псевдоэлементов */
+        .pseudo-class-example {
+            padding: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .pseudo-class-example::before {
+            content: '★';
+            color: #ffd700;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .pseudo-class-example:hover {
+            background-color: #28a745;
+        }
+
+        .pseudo-class-example::after {
+            content: ' - Наведите для изменения';
+            color: #fff;
+            font-style: italic;
+        }
+        .conteyner-asd-x-G{
+    width: 100%;
+    height: 100vh;
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: none;
+}
+.conteyner-asd-x-G h3{
+    width: 100%;
+    height: initial;
+    background-color: rgba(252, 251, 251, 0.171);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    padding: calc(var(--index) * 0.5);
+    top: calc(var(--index) * 2);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: calc(var(--index) * 4);
+    color:black;
+}
+.conteyner-asd-x-G h4{
+    width: 100%;
+    height: initial;
+    background-color: rgba(252, 251, 251, 0.171);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    padding-left: calc(var(--index) * 0.5);
+    bottom: calc(var(--index) * 0.5);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: calc(var(--index) * 3);
+    color:black;
+}
+
+        @media screen and (max-width: 600px){
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+            body {
+            font-family: none;
+            line-height: 0;
+            margin: 0;
+            background-color: none;
+        }
+            .PASDwr{
+                display: none;
+            }
+            .conteyner-asd-x-G{
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="conteyner-asd-x-G">
+        <h3>Основы CSS: 2</h3>
+        <h4>Мы начнем изучение CSS, чтобы узнать, как стилизовать ваши HTML-элементы и улучшить внешний вид веб-страниц.</h4>
+   </div>
+
+
+    
+    <div class="container mt-5 PASDwr">
+        <h1>Урок 2: Продвинутые техники CSS</h1>
+        
+        <h2>1. Flexbox</h2>
+        <div class="code-block">
+            <pre><code>&lt;div class="flex-container"&gt;
+        &lt;div class="flex-item"&gt;Элемент 1&lt;/div&gt;
+        &lt;div class="flex-item"&gt;Элемент 2&lt;/div&gt;
+        &lt;div class="flex-item"&gt;Элемент 3&lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+            <pre>
+              &lt;style&gt;
+                    /* Контейнер Flexbox с выравниванием элементов по горизонтали */
+                    .flex-container {
+                        display: flex; /* Включаем Flexbox */
+                        justify-content: space-between; /* Распределяем элементы с промежутками между ними */
+                        align-items: center; /* Выравниваем элементы по центру вертикально */
+                        padding: 20px; /* Отступ внутри контейнера */
+                        background-color: #f0f0f0; /* Цвет фона контейнера */
+                        border: 1px solid #ddd; /* Граница контейнера */
+                        border-radius: 5px; /* Скругляем углы контейнера */
+                    }
+    
+                    /* Стили для отдельных элементов Flexbox */
+                    .flex-item {
+                        background-color: #007bff; /* Цвет фона элементов */
+                        color: #fff; /* Цвет текста элементов */
+                        padding: 20px; /* Отступ внутри элементов */
+                        border-radius: 5px; /* Скругляем углы элементов */
+                        flex: 1; /* Растягиваем элементы равномерно */
+                        margin: 5px; /* Отступы вокруг элементов */
+                        text-align: center; /* Выравниваем текст по центру */
+                    }
+    
+                    /* Изменяем размер второго элемента Flexbox */
+                    .flex-item:nth-child(2) {
+                        flex: 2; /* Увеличиваем ширину второго элемента в два раза по сравнению с остальными */
+                    }
+                &lt;/style&gt;</pre>
+        </div>
+        <div class="flex-container">
+            <div class="flex-item">Элемент 1</div>
+            <div class="flex-item">Элемент 2</div>
+            <div class="flex-item">Элемент 3</div>
+        </div>
+        
+        <h2>2. CSS Grid</h2>
+        <div class="code-block">
+            <pre><code>&lt;div class="grid-container"&gt;
+        &lt;div class="grid-item"&gt;Элемент 1&lt;/div&gt;
+        &lt;div class="grid-item"&gt;Элемент 2&lt;/div&gt;
+        &lt;div class="grid-item"&gt;Элемент 3&lt;/div&gt;
+        &lt;div class="grid-item"&gt;Элемент 4&lt;/div&gt;
+        &lt;div class="grid-item"&gt;Элемент 5&lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+            <pre>
+              &lt;style&gt;
+                    /* Контейнер CSS Grid с колонками и отступами */
+                    .grid-container {
+                        display: grid; /* Включаем CSS Grid */
+                        grid-template-columns: repeat(3, 1fr); /* Создаем три равные колонки */
+                        gap: 10px; /* Отступы между элементами сетки */
+                        padding: 20px; /* Отступ внутри контейнера */
+                        background-color: #e0e0e0; /* Цвет фона контейнера */
+                        border: 1px solid #ddd; /* Граница контейнера */
+                        border-radius: 5px; /* Скругляем углы контейнера */
+                    }
+    
+                    /* Стили для элементов CSS Grid */
+                    .grid-item {
+                        background-color: #007bff; /* Цвет фона элементов */
+                        color: #fff; /* Цвет текста элементов */
+                        padding: 20px; /* Отступ внутри элементов */
+                        border-radius: 5px; /* Скругляем углы элементов */
+                        text-align: center; /* Выравниваем текст по центру */
+                    }
+    
+                    /* Изменяем размер второго элемента Grid */
+                    .grid-item:nth-child(2) {
+                        grid-column: span 2; /* Занимаем две колонки */
+                    }
+                &lt;/style&gt;</pre>
+        </div>
+        <div class="grid-container">
+            <div class="grid-item">Элемент 1</div>
+            <div class="grid-item">Элемент 2</div>
+            <div class="grid-item">Элемент 3</div>
+            <div class="grid-item">Элемент 4</div>
+            <div class="grid-item">Элемент 5</div>
+        </div>
+        
+        <h2>3. Трансформации и Переходы</h2>
+        <div class="code-block">
+            <pre><code>&lt;div class="transform-example"&gt;
+        Трансформируем
+    &lt;/div&gt;</code></pre>
+            <pre>
+              &lt;style&gt;
+                    /* Элемент с трансформациями и переходами */
+                    .transform-example {
+                        width: 100px; /* Ширина элемента */
+                        height: 100px; /* Высота элемента */
+                        background-color: #007bff; /* Цвет фона элемента */
+                        color: #fff; /* Цвет текста элемента */
+                        display: flex; /* Включаем Flexbox для центрирования текста */
+                        align-items: center; /* Выравниваем текст по вертикали */
+                        justify-content: center; /* Выравниваем текст по горизонтали */
+                        border-radius: 10px; /* Скругляем углы элемента */
+                        transition: transform 0.3s ease, background-color 0.3s ease; /* Переходы для трансформации и изменения фона */
+                        margin-bottom: 20px; /* Отступ снизу элемента */
+                    }
+    
+                    /* Эффект при наведении */
+                    .transform-example:hover {
+                        transform: scale(1.2) rotate(15deg); /* Увеличиваем размер и поворачиваем элемент */
+                        background-color: #28a745; /* Меняем цвет фона элемента */
+                    }
+                &lt;/style&gt;</pre>
+        </div>
+        <div class="transform-example">
+            Трансформируем
+        </div>
+        
+        <h2>4. CSS Фильтры</h2>
+        <div class="code-block">
+            <pre><code>&lt;div class="filter-example"&gt;&lt;/div&gt;</code></pre>
+            <pre>
+              &lt;style&gt;
+                    /* Элемент с применением CSS фильтров */
+                    .filter-example {
+                        width: 300px; /* Ширина элемента */
+                        height: 200px; /* Высота элемента */
+                        background-image: url('https://via.placeholder.com/300x200'); /* Фоновое изображение */
+                        background-size: cover; /* Заполняем элемент фоновым изображением */
+                        filter: grayscale(100%) blur(5px); /* Применяем черно-белый фильтр и размываем изображение */
+                        transition: filter 0.3s ease; /* Переход для фильтров */
+                        margin-bottom: 20px; /* Отступ снизу элемента */
+                    }
+    
+                    /* Эффект при наведении */
+                    .filter-example:hover {
+                        filter: grayscale(0%) blur(0); /* Убираем фильтры при наведении */
+                    }
+                &lt;/style&gt;</pre>
+        </div>
+        <div class="filter-example"></div>
+        
+        <h2>5. Псевдоклассы и Псевдоэлементы</h2>
+        <div class="code-block">
+            <pre><code>&lt;div class="pseudo-class-example"&gt;
+        Пример псевдокласса
+    &lt;/div&gt;</code></pre>
+            <pre>
+              &lt;style&gt;
+                    /* Элемент с псевдоклассами и псевдоэлементами */
+                    .pseudo-class-example {
+                        padding: 20px; /* Отступ внутри элемента */
+                        background-color: #007bff; /* Цвет фона элемента */
+                        color: #fff; /* Цвет текста элемента */
+                        border-radius: 5px; /* Скругляем углы элемента */
+                        position: relative; /* Устанавливаем позиционирование для псевдоэлементов */
+                        margin-bottom: 20px; /* Отступ снизу элемента */
+                    }
+    
+                    /* Псевдоэлемент до контента */
+                    .pseudo-class-example::before {
+                        content: '★'; /* Добавляем звезду перед контентом */
+                        color: #ffd700; /* Цвет звезды */
+                        position: absolute; /* Абсолютное позиционирование */
+                        top: 10px; /* Располагаем на 10 пикселей ниже верхнего края */
+                        left: 10px; /* Располагаем на 10 пикселей левее левого края */
+                    }
+    
+                    /* Эффект при наведении */
+                    .pseudo-class-example:hover {
+                        background-color: #28a745; /* Меняем цвет фона элемента при наведении */
+                    }
+    
+                    /* Псевдоэлемент после контента */
+                    .pseudo-class-example::after {
+                        content: ' - Наведите для изменения'; /* Добавляем текст после контента */
+                        color: #fff; /* Цвет текста */
+                        font-style: italic; /* Курсивное начертание */
+                    }
+                &lt;/style&gt;</pre>
+        </div>
+        <div class="pseudo-class-example">
+            Пример псевдокласса
+        </div>
+    </div>    
+</body>
+</html>
+
+
+
+
+
+
+
+

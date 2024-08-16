@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 1: Основы HTML и структура DOM</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        :root {
+	--gap: .5em;
+	--index: calc(1vw + 1vh);
+	--color-dark: #7c7c7c;
+}
+        h1, h2 {
+            color: #333;
+        }
+        .code-block {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: Consolas, monospace;
+        }
+        .highlight {
+            background-color: #d1e7dd;
+        }
+        /* .code {
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 10px;
+            overflow-x: auto;
+        } */
+.conteyner-asd-x-G{
+    width: 100%;
+    height: 100vh;
+    background-image: url(https://www.oxfordwebstudio.com/user/pages/06.da-li-znate/sta-je-html/sta-je-html.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: none;
+}
+.conteyner-asd-x-G h3{
+    width: 100%;
+    height: initial;
+    background-color: rgba(252, 251, 251, 0.171);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    padding: calc(var(--index) * 0.5);
+    top: calc(var(--index) * 2);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: calc(var(--index) * 4);
+    color:black;
+}
+.conteyner-asd-x-G h4{
+    width: 100%;
+    height: initial;
+    background-color: rgba(252, 251, 251, 0.171);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    padding-left: calc(var(--index) * 0.5);
+    bottom: calc(var(--index) * 0.5);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: calc(var(--index) * 3);
+    color:black;
+}
+
+        @media screen and (max-width: 500px){
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+            body {
+            font-family: none;
+            line-height: 0;
+            margin: 0;
+            background-color: none;
+        }
+            .PASDwr{
+                display: none;
+            }
+            .conteyner-asd-x-G{
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="conteyner-asd-x-G">
+         <h3>Введение в HTML</h3>
+         <h4>Это начало вашего пути в изучение HTML. Мы рассмотрим основные элементы и структуру HTML-документа.</h4>
+    </div>
+
+
+
+    <div class="container PASDwr">
+        <h1>Урок 1: Основы HTML и структура DOM</h1>
+        <h2>Описание</h2>
+        <p>HTML (HyperText Markup Language) — это язык разметки, используемый для создания структуры веб-страниц. DOM (Document Object Model) — это иерархическая структура документа, которая представляет все элементы на веб-странице как объекты.</p>
+        
+        <h2>Основные HTML теги</h2>
+
+        <h3>&lt;!DOCTYPE html&gt;</h3>
+        <p><strong>Описание:</strong> Определяет тип документа и версию HTML.</p>
+        <div class="code-block">&lt;!DOCTYPE html&gt;</div>
+        <p><strong>Как выглядит:</strong> Не отображается на странице.</p>
+
+        <h3>&lt;html&gt;</h3>
+        <p><strong>Описание:</strong> Корневой элемент HTML-документа.</p>
+        <div class="code-block">&lt;html&gt;
+...
+&lt;/html&gt;</div>
+        <p><strong>Как выглядит:</strong> Не отображается на странице.</p>
+
+        <h3>&lt;head&gt;</h3>
+        <p><strong>Описание:</strong> Содержит метаинформацию о документе (например, &lt;title&gt;, &lt;meta&gt;).</p>
+        <div class="code-block">&lt;head&gt;
+  &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;</div>
+        <p><strong>Как выглядит:</strong> Не отображается на странице.</p>
+
+        <h3>&lt;title&gt;</h3>
+        <p><strong>Описание:</strong> Определяет заголовок документа, который отображается в заголовке окна браузера.</p>
+        <div class="code-block">&lt;title&gt;Page Title&lt;/title&gt;</div>
+        <p><strong>Как выглядит:</strong> Отображается в заголовке вкладки браузера.</p>
+
+        <h3>&lt;meta&gt;</h3>
+        <p><strong>Описание:</strong> Предоставляет метаинформацию, такую как кодировка и описание страницы.</p>
+        <div class="code-block">&lt;meta charset="UTF-8"&gt;</div>
+        <p><strong>Как выглядит:</strong> Не отображается на странице.</p>
+
+        <h3>&lt;body&gt;</h3>
+        <p><strong>Описание:</strong> Содержит все видимые элементы веб-страницы, такие как текст, изображения и другие теги.</p>
+        <div class="code-block">&lt;body&gt;
+...
+&lt;/body&gt;</div>
+        <p><strong>Как выглядит:</strong> Все содержимое отображается на странице.</p>
+
+        <h3>&lt;h1&gt; - &lt;h6&gt;</h3>
+        <p><strong>Описание:</strong> Заголовки разного уровня от &lt;h1&gt; (самый важный) до &lt;h6&gt; (наименее важный).</p>
+        <div class="code-block">&lt;h1&gt;Main Heading&lt;/h1&gt;
+&lt;h2&gt;Subheading&lt;/h2&gt;</div>
+        <p><strong>Как выглядит:</strong> Заголовки отображаются как крупный текст, различающийся по размеру в зависимости от уровня.</p>
+
+        <h3>&lt;p&gt;</h3>
+        <p><strong>Описание:</strong> Определяет абзац текста.</p>
+        <div class="code-block">&lt;p&gt;This is a paragraph.&lt;/p&gt;</div>
+        <p><strong>Как выглядит:</strong> Отображается как блок текста с отступами.</p>
+
+        <h3>&lt;a&gt;</h3>
+        <p><strong>Описание:</strong> Создает гиперссылку на другую страницу или ресурс.</p>
+        <div class="code-block">&lt;a href="https://example.com"&gt;Visit Example&lt;/a&gt;</div>
+        <p><strong>Как выглядит:</strong> Текст ссылки, который можно кликнуть.</p>
+
+        <h2>Пример HTML документа</h2>
+
+        <div class="code-block">
+        &lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Basic HTML Structure&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Welcome to HTML&lt;/h1&gt;
+  &lt;h2&gt;Introduction&lt;/h2&gt;
+  &lt;p&gt;This is a simple HTML document that demonstrates the basic structure and tags used in web development.&lt;/p&gt;
+  &lt;a href="https://www.example.com"&gt;Learn more about HTML&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </div>
+
+        <h2>Объяснение DOM</h2>
+        <p>DOM представляет документ как дерево объектов, где каждый элемент HTML является узлом. Узлы включают элементы, атрибуты, текстовые узлы и комментарии. Это позволяет скриптам (например, JavaScript) динамически изменять содержимое и структуру документа.</p>
+    </div>
+
+    <div class="container PASDwr">
+        <h1 class="my-4">Урок 2: Продвинутые теги HTML и работа с DOM</h1>
+        <h2>Описание</h2>
+        <p>Этот урок посвящен более сложным тегам HTML, которые расширяют функциональность веб-страниц, а также работе с DOM, позволяющей манипулировать элементами страницы с помощью JavaScript.</p>
+        
+        <h2>Продвинутые HTML теги</h2>
+
+        <h3>&lt;div&gt; и &lt;span&gt;</h3>
+        <p><strong>Описание:</strong> &lt;div&gt; используется для блоковой группировки элементов, &lt;span&gt; — для строчной.</p>
+        <div class="code-block">
+            &lt;div&gt;This is a block element.&lt;/div&gt;<br>
+            &lt;span&gt;This is an inline element.&lt;/span&gt;
+        </div>
+
+        <h3>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</h3>
+        <p><strong>Описание:</strong> Создают списки: упорядоченные (&lt;ol&gt;) и неупорядоченные (&lt;ul&gt;), элементы списка — &lt;li&gt;.</p>
+        <div class="code-block">
+            &lt;ul&gt;<br>
+            &nbsp;&nbsp;&lt;li&gt;Item 1&lt;/li&gt;<br>
+            &nbsp;&nbsp;&lt;li&gt;Item 2&lt;/li&gt;<br>
+            &lt;/ul&gt;<br><br>
+            &lt;ol&gt;<br>
+            &nbsp;&nbsp;&lt;li&gt;First&lt;/li&gt;<br>
+            &nbsp;&nbsp;&lt;li&gt;Second&lt;/li&gt;<br>
+            &lt;/ol&gt;
+        </div>
+
+        <h3>&lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;</h3>
+        <p><strong>Описание:</strong> Создает таблицу, строки определяются с помощью &lt;tr&gt;, ячейки — &lt;td&gt;, заголовки — &lt;th&gt;.</p>
+        <div class="code-block">
+            &lt;table class="table table-bordered"&gt;<br>
+            &nbsp;&nbsp;&lt;tr&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Header 1&lt;/th&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Header 2&lt;/th&gt;<br>
+            &nbsp;&nbsp;&lt;/tr&gt;<br>
+            &nbsp;&nbsp;&lt;tr&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Data 1&lt;/td&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Data 2&lt;/td&gt;<br>
+            &nbsp;&nbsp;&lt;/tr&gt;<br>
+            &lt;/table&gt;
+        </div>
+
+        <h3>&lt;form&gt;, &lt;input&gt;, &lt;button&gt;</h3>
+        <p><strong>Описание:</strong> Используются для создания форм на веб-страницах. &lt;input&gt; определяет поля ввода, &lt;button&gt; — кнопки.</p>
+        <div class="code-block">
+            &lt;form&gt;<br>
+            &nbsp;&nbsp;&lt;input type="text" class="form-control mb-2" placeholder="Your name"&gt;<br>
+            &nbsp;&nbsp;&lt;input type="email" class="form-control mb-2" placeholder="Your email"&gt;<br>
+            &nbsp;&nbsp;&lt;input type="password" class="form-control mb-2" placeholder="Password"&gt;<br>
+            &nbsp;&nbsp;&lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;<br>
+            &lt;/form&gt;
+        </div>
+
+        <h3>&lt;img&gt;</h3>
+        <p><strong>Описание:</strong> Вставляет изображение на веб-страницу.</p>
+        <div class="code-block">
+            &lt;img src="image.jpg" alt="Description of image" class="img-fluid"&gt;
+        </div>
+
+        <h2>Пример работы с DOM</h2>
+        <p>DOM позволяет изменять элементы страницы через JavaScript, например, добавлять или удалять элементы, изменять стили и содержимое.</p>
+        
+        <div class="code-block">
+            &lt;!DOCTYPE html&gt;<br>
+            &lt;html&gt;<br>
+            &nbsp;&nbsp;&lt;head&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;DOM Manipulation&lt;/title&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;style&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.highlight { color: red; }<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/style&gt;<br>
+            &nbsp;&nbsp;&lt;/head&gt;<br>
+            &nbsp;&nbsp;&lt;body&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 id="title"&gt;Hello, World!&lt;/h1&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;button onclick="changeText()" class="btn btn-success"&gt;Change Text&lt;/button&gt;<br>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;script&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function changeText() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const title = document.getElementById('title');<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title.textContent = 'Text Changed!';<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title.classList.add('highlight');<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;<br>
+            &nbsp;&nbsp;&lt;/body&gt;<br>
+            &lt;/html&gt;
+        </div>
+
+        <h2>Объяснение примера</h2>
+        <p>В этом примере на странице находится заголовок и кнопка. При нажатии на кнопку срабатывает функция changeText, которая изменяет текст заголовка и добавляет к нему CSS-класс highlight, изменяющий цвет текста на красный.</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
